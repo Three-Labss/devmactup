@@ -72,10 +72,18 @@ export default function OnboardingPage() {
     }
   };
 
-  const handleAnswersChange = (answers: typeof quickAnswers) => {
-    setQuickAnswers(answers);
+  const handleAnswersChange = (answers: {
+    looking_for?: string;
+    offering?: string;
+    industry?: string;
+  }) => {
+    setQuickAnswers((prev) => ({
+      ...prev,
+      ...answers,
+    }));
     // Auto-advance to preview when all questions are answered
-    if (answers.looking_for && answers.offering && answers.industry) {
+    const updated = { ...quickAnswers, ...answers };
+    if (updated.looking_for && updated.offering && updated.industry) {
       setStep("preview");
     }
   };

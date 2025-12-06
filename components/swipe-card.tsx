@@ -60,7 +60,10 @@ export function SwipeCard({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
-  const handleDragEnd = (_event: React.PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    _event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
     const threshold = 100;
     if (Math.abs(info.offset.x) > threshold) {
       const direction = info.offset.x > 0 ? "right" : "left";
